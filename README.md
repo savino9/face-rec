@@ -24,7 +24,7 @@ The only way to discover more about your ethnic origin is to buy a DNA-kit test,
 
 ## Target Audience
 
-![](./img/personas-min.jpg)
+![](./src/img/personas-min.jpg)
 
 Primary target will be young professionals that wants to learn more about themselves, or just having fun, generally man and woman from 25 years old to 35. 
 
