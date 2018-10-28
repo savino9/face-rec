@@ -1,35 +1,38 @@
 # **Virtual DNA** Application
 __Discover more about your culture, history and identity.__
-
-## Project Specifications
-
-This Web Application is build with React and NodeJS using the Clarifai API.
-Virtual DNA allows registered users and upload a picture from a url, the application 
-will connect to the Clarifai API to retrieve the data prediction.
-
-- What is **Clarifai**?
-Clarifai is an artificial intelligence company that excels in visual recognition, solving real-world problems for businesses.
+Virtual DNA allows registered users to upload a picture from a url, the application 
+will connect to the Clarifai API to retrieve data prediction about the uploaded picture.
 
 ## Problem to solve
-The only way to discover more about your ethnic origin is to buy a DNA-kit test, witch is most of the time quite expansive. After you buy the kit you will wait for it, usually you have to wait a lot of time also for the results.
+The only way to discover more about your ethnic origin is to buy a DNA-kit test, which is most of the time very expansive. Once you buy the kit you will wait for it, usually you have to wait a lot of time also for the results.
 
 * DNA test kit are too expansive
-* Too much time to wait before getting the results
+* Too much time before getting the results
 
-## Table of Contents
-
-- [What is the problem to solve?](#problem-to-solve)
-- [Target Audience](#target-audience)
-- [Folder Structure](#folder-structure)
+### What is **Clarifai**? 
+Clarifai is an artificial intelligence company that excels in visual recognition, solving real-world problems for businesses.
 
 ## Target Audience
+Primary target will be young professionals that wants to learn more about themselves, or just having fun, generally man and woman from 25 years old to 35.
+![](./src/img/personas-min.jpg) 
 
-![](./src/img/personas-min.jpg)
+## Project Specifications
+This Web Application is build with:
+- **React** 
+- **NodeJS** 
+- **Express** 
 
-Primary target will be young professionals that wants to learn more about themselves, or just having fun, generally man and woman from 25 years old to 35. 
+#### Dev:
+- **cors**
+- **body-parser**
+
+#### Security:
+- **bcrypt** 
+
+#### Database:
+- **Postgres**
 
 ## Folder Structure
-
 ```
 my-app/
   README.md
@@ -54,12 +57,10 @@ For the project, **these files must exist with exact filenames**:
 
 
 ## Technical Specifications:
-
 - __What data will you need to store? How will it be organized? Describe each
 table, its columns, and its relationships with other tables.__
 
 - **Data organization**
-
 ```
      Table 'Users'
 ```
@@ -83,39 +84,39 @@ The columns will be:
 
 - __What does your product look like? List each view, their purpose, and how they work__
 
-The information on each user will include the NAME and SCORE. After the user has submitted the url the face will be detected and more information will be displayed such as gender, age and multicultural appearance.
+The information on each user will include the id, name, email and password. After the user has submitted the url will be detecteded more information such as gender, age and multicultural appearance.
 
 ## **ROUTES**
 Virtual DNA will be __highly accessible__ and incredibly __user friendly__, the
 website will have the following routes:
 
-### Homepage('/')
+#### Homepage('/')
 This will be the first page the user sees.
 
-### Sign In('/signin')
+#### Sign In('/signin')
 This page allows users to sign in their own account.
 
-### Register('/register')
+#### Register('/register')
 This page allows a user to register an account. (Ideally one account for one user);
 
-### Update Score('/image')
+#### Update Score('/image')
 This route will update the rank of the user +1 after the image will be analized.
 
 ## **Milestones, Timeline**
 The application it's almost complete. Most of the front end is't set up and 
 working, it's connected already with the server.
 
-#### Friday 26th
+#### Sunday 28th 
 - Implementing Postgres database 
 - Creating the table Users
 - Changing background and text color 
 
-#### Saturday 27th
+#### Monday 29th
 - Connecting the database with the front-end
 - Register a user
 - Getting User profile 
 
-### Sunday 28th 
+#### Tuesday 30th 
 - Update entries 
 - Test sign in 
 - Test Application
