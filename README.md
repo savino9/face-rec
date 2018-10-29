@@ -4,16 +4,17 @@ Virtual DNA allows registered users to upload a picture from a url, the applicat
 will connect to the Clarifai API to retrieve data prediction about the uploaded picture.
 
 ## Problem to solve
-The only way to discover more about your ethnic origin is to buy a DNA-kit test, which is most of the time very expansive. Once you buy the kit you will wait for it, usually you have to wait a lot of time also for the results.
+The only way to discover more about your ethnic origin is to buy a DNA-kit test, which is most of the time very expensive. Once you buy the kit you will wait for it, usually you have to wait a lot of time also for the results.
 
-* DNA test kit are too expansive
+* DNA test kit are too expensive
 * Too much time before getting the results
 
 ### What is **Clarifai**? 
 Clarifai is an artificial intelligence company that excels in visual recognition, solving real-world problems for businesses.
 
 ## Target Audience
-Primary target will be young professionals that wants to learn more about themselves, or just having fun, generally man and woman from 25 years old to 35.\
+Primary target will be young professionals that wants to learn more about themselves, or just having fun, generally man and woman from 25 years old to 35.
+<br>
 ![](./src/img/personas-min.jpg) 
 
 ## Project Specifications
@@ -85,7 +86,8 @@ The columns will be:
 
 - __What does your product look like? List each view, their purpose, and how they work__
 
-The information on each user will include the id, name, email and password. After the user has submitted the url will be detecteded: faces and more information about it such as gender, age and multicultural appearance.
+The information on each user will include the id, name, email and password.\
+After the user has submitted the url a face will be detected (if it exists) and more information about it such as gender, age and multicultural appearance.
 
 ## **ROUTES**
 Virtual DNA will be __highly accessible__ and incredibly __user friendly__, the
