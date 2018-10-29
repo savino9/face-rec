@@ -13,12 +13,13 @@ The only way to discover more about your ethnic origin is to buy a DNA-kit test,
 Clarifai is an artificial intelligence company that excels in visual recognition, solving real-world problems for businesses.
 
 ## Target Audience
-Primary target will be young professionals that wants to learn more about themselves, or just having fun, generally man and woman from 25 years old to 35.
-<br>
-![](./src/img/personas-min.jpg) 
+![](./src/img/personas-min.jpg)
+\
+Primary target will be young professionals that wants to learn more about themselves, or just having fun, generally men and women from 25 years old to 35.
+
 
 ## Project Specifications
-This Web Application is build with:
+This Web Application is built with:
 - **React** - front-end javascript library
 - **NodeJS** - run-time environment
 - **Express** - Node.js framework
@@ -106,7 +107,7 @@ This page allows a user to register an account. (Ideally one account for one use
 This route will update the rank of the user +1 after the image will be analized.
 
 ## **Milestones, Timeline**
-The application it's almost complete. Most of the front end is't set up and 
+The application is almost complete. Most of the front-end it's set up and 
 working, it's connected already with the server.
 
 #### Sunday 28th 
