@@ -50,6 +50,7 @@ class Register extends React.Component {
 			        	className="pa2 input-reset b--white ba bg-transparent hover-bg-black hover-white w-100 white" 
 			        	type="text" name="name"  
 			        	id="name" 
+			        	required
 			        />
 			      </div>
 			      <div className="mt3">
@@ -59,7 +60,8 @@ class Register extends React.Component {
 			        	className="pa2 input-reset b--white ba bg-transparent hover-bg-black hover-white w-100 white" 
 			        	type="email" 
 			        	name="email-address" 
-			        	id="email-address" 
+			        	id="email-address"
+			        	required 
 			        />
 			      </div>
 			      <div className="mt3">
@@ -70,6 +72,7 @@ class Register extends React.Component {
 			        type="password" 
 			        name="password" 
 			        id="password" 
+			        required
 			      />
 			      </div>
 			    </fieldset>

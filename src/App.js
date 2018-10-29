@@ -62,6 +62,15 @@ class App extends Component {
     const img = document.getElementById('inputImage');
     const width = Number(img.width);
     const height = Number(img.height);
+
+    const age = data.outputs[0].data.regions[0].data.face.age_appearance.concepts[0].name;
+    console.log(`age: ${age}`);
+
+    const masculine = data.outputs[0].data.regions[0].data.face.gender_appearance.concepts[0].value;
+    console.log(`masculine: ${masculine}`);
+    const feminine = data.outputs[0].data.regions[0].data.face.gender_appearance.concepts[0].value;
+    console.log(`feminine: ${feminine}`);
+
     return {
       leftCol: clarifaiFace.left_col * width,
       topRow: clarifaiFace.top_row * height,
@@ -82,7 +91,7 @@ class App extends Component {
     this.setState({imageUrl: this.state.input});
 
     app.models.predict(
-      Clarifai.FACE_DETECT_MODEL, 
+      Clarifai.DEMOGRAPHICS_MODEL, 
       this.state.input)
     .then(res => {
       if (res) {
@@ -93,14 +102,13 @@ class App extends Component {
             id: this.state.user.id
           })
         })
-          .then(response => response.json())
-          .then(count => {
-            // instead of changing the all object with Object.assign we can modify
-            // just the property entries of user
-            this.setState(Object.assign(this.state.user, {entries: count}))
-          })
+        .then(response => response.json())
+        .then(count => {
+          // instead of changing the all object with Object.assign we can modify
+          // just the property entries of user
+          this.setState(Object.assign(this.state.user, {entries: count}))
+        })
       }
-
       this.displayFaceBox(this.calculateFaceLocation(res))
     })
     .catch(err => console.log(err))
