@@ -1,5 +1,5 @@
 # **Virtual DNA** Application
-__Discover more about your culture, history and identity.__
+__Discover more about your culture, history and identity.__\
 Virtual DNA allows registered users to upload a picture from a url, the application 
 will connect to the Clarifai API to retrieve data prediction about the uploaded picture.
 
@@ -13,24 +13,25 @@ The only way to discover more about your ethnic origin is to buy a DNA-kit test,
 Clarifai is an artificial intelligence company that excels in visual recognition, solving real-world problems for businesses.
 
 ## Target Audience
-Primary target will be young professionals that wants to learn more about themselves, or just having fun, generally man and woman from 25 years old to 35.
+Primary target will be young professionals that wants to learn more about themselves, or just having fun, generally man and woman from 25 years old to 35.\
 ![](./src/img/personas-min.jpg) 
 
 ## Project Specifications
 This Web Application is build with:
-- **React** 
-- **NodeJS** 
-- **Express** 
+- **React** - front-end javascript library
+- **NodeJS** - run-time environment
+- **Express** - Node.js framework
 
-#### Dev:
-- **cors**
-- **body-parser**
+Dev:
+- **cors** - Cross-Origin Resource Sharing (CORS)
+- **body-parser** - Node.js body parsing middleware
 
-#### Security:
-- **bcrypt** 
+Security:
+- **bcrypt** - password hashing function 
 
-#### Database:
-- **Postgres**
+Database:
+- **Postgres** - OR database management system
+- **Sequelize** - ORM promise-based for Node.js
 
 ## Folder Structure
 ```
@@ -84,7 +85,7 @@ The columns will be:
 
 - __What does your product look like? List each view, their purpose, and how they work__
 
-The information on each user will include the id, name, email and password. After the user has submitted the url will be detecteded more information such as gender, age and multicultural appearance.
+The information on each user will include the id, name, email and password. After the user has submitted the url will be detecteded: faces and more information about it such as gender, age and multicultural appearance.
 
 ## **ROUTES**
 Virtual DNA will be __highly accessible__ and incredibly __user friendly__, the
@@ -120,5 +121,11 @@ working, it's connected already with the server.
 - Update entries 
 - Test sign in 
 - Test Application
-- Deploy with Heroku 
 
+#### Wednesday 31
+- Figure out how to retrieve info from the Demographic model
+- Implement the new data in the front-end
+
+#### Thursday
+- Final test 
+- Deploy with Heroku 

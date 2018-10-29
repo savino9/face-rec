@@ -38,7 +38,7 @@ class Signin extends React.Component {
 	const {onRouteChange} = this.props;
 	return (
 		<main className="pa4 black-80">
-			<article className="br3 ba shadow-5 b--white mv4 w-100 w-50-m w-25-l mw6 center white">
+			<article className="br3 ba shadow-5 b--white o-60 bg-black mv4 w-100 w-50-m w-25-l mw6 center white">
 		  <div className="measure">
 		    <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
 		      <legend className="f1 fw6 ph0 mh0">Sign In</legend>
