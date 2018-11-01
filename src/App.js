@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Particles from 'react-particles-js';
-import Clarifai from 'clarifai';
 import Navigation from './Components/Navigation/Navigation';
 import Logo from './Components/Logo/Logo';
 import ImageLinkForm from './Components/ImageLinkForm/ImageLinkForm';
@@ -9,10 +8,6 @@ import Rank from './Components/Rank/Rank';
 import Signin from './Components/Signin/Signin';
 import Register from './Components/Register/Register';
 import './App.css';
-
-const app = new Clarifai.App({
- apiKey: '6a583a89c7a646e9a4b90de93b6039de'
-});
 
 const particleOptions = {
   particles: {
@@ -26,23 +21,25 @@ const particleOptions = {
   }
 }
 
+const initalState = {
+  input: '',
+  imageUrl: '',
+  box: {},
+  route: 'signin',
+  isSignedIn: false,
+  user: {
+    id: '',
+    name: '',
+    email: '',
+    entries: 0,
+    joined: ''
+  }  
+}
+
 class App extends Component {
   constructor() {
     super();
-    this.state = {
-      input: '',
-      imageUrl: '',
-      box: {},
-      route: 'signin',
-      isSignedIn: false,
-      user: {
-        id: '',
-        name: '',
-        email: '',
-        entries: 0,
-        joined: ''
-      }
-    }
+    this.state = initalState
   }
 
   loadUser = data => {
@@ -63,13 +60,19 @@ class App extends Component {
     const width = Number(img.width);
     const height = Number(img.height);
 
-    const age = data.outputs[0].data.regions[0].data.face.age_appearance.concepts[0].name;
-    console.log(`age: ${age}`);
+    // const age = data.outputs[0].data.regions[0].data.face.age_appearance.concepts[0].name;
+    // console.log(`age: ${age}`);
 
-    const masculine = data.outputs[0].data.regions[0].data.face.gender_appearance.concepts[0].value;
-    console.log(`masculine: ${masculine}`);
-    const feminine = data.outputs[0].data.regions[0].data.face.gender_appearance.concepts[0].value;
-    console.log(`feminine: ${feminine}`);
+    // const masculine = data.outputs[0].data.regions[0].data.face.gender_appearance.concepts[0].value;
+    // console.log(`masculine: ${masculine}`);
+    // const feminine = data.outputs[0].data.regions[0].data.face.gender_appearance.concepts[0].value;
+    // console.log(`feminine: ${feminine}`);
+
+    // const multicultural_appearance = data.outputs[0].data.regions[0].data.face.multicultural_appearance.concepts;
+    
+    // multicultural_appearance.forEach(val => {
+    //   console.log(val);
+    // })
 
     return {
       leftCol: clarifaiFace.left_col * width,
@@ -89,12 +92,16 @@ class App extends Component {
 
   onButtonSubmit = () => {
     this.setState({imageUrl: this.state.input});
-
-    app.models.predict(
-      Clarifai.DEMOGRAPHICS_MODEL, 
-      this.state.input)
-    .then(res => {
-      if (res) {
+    fetch('http://localhost:3000/imageurl', {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        input: this.state.input
+      })
+    })
+    .then(response => response.json())
+    .then(response => {
+      if (response) {
         fetch('http://localhost:3000/image', {
           method: 'put',
           headers: {'Content-Type': 'application/json'},
@@ -108,15 +115,16 @@ class App extends Component {
           // just the property entries of user
           this.setState(Object.assign(this.state.user, {entries: count}))
         })
+        .catch(err => console.log(err));
       }
-      this.displayFaceBox(this.calculateFaceLocation(res))
+      this.displayFaceBox(this.calculateFaceLocation(response))
     })
     .catch(err => console.log(err))
   }  
 
   onRouteChange = (route) => {
     if (route === 'signout') {
-      this.setState({isSignedIn: false})
+      this.setState(initalState);
     } else if (route === 'home') {
       this.setState({isSignedIn: true})
     }
@@ -124,13 +132,11 @@ class App extends Component {
   }
 
   render() {
-    const {isSignedIn, imageUrl, route, box } = this.state;
+    const {isSignedIn, imageUrl, route, box} = this.state;
     return (
       <div className="App">
-        <Particles className='particles' 
-          params={particleOptions}
-        />
-        <Navigation isSignedIn= {isSignedIn} onRouteChange= {this.onRouteChange} />
+        <Particles className='particles' params={particleOptions}/>
+        <Navigation isSignedIn= {isSignedIn} onRouteChange= {this.onRouteChange}/>
         { route === 'home' ?
           <div>
             <Logo />
@@ -144,9 +150,9 @@ class App extends Component {
           :
           (
             this.state.route === 'signin' ?
-            <Signin loadUser={this.loadUser} onRouteChange= {this.onRouteChange} /> 
+            <Signin loadUser={this.loadUser} onRouteChange= {this.onRouteChange}/> 
             :
-            <Register loadUser={this.loadUser} onRouteChange= {this.onRouteChange} /> 
+            <Register loadUser={this.loadUser} onRouteChange= {this.onRouteChange}/> 
           )
         }
       </div>
