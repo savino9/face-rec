@@ -5,6 +5,7 @@ import Logo from './Components/Logo/Logo';
 import ImageLinkForm from './Components/ImageLinkForm/ImageLinkForm';
 import FaceRecognition from './Components/FaceRecognition/FaceRecognition';
 import Rank from './Components/Rank/Rank';
+import Predictions from './Components/Predictions/Predictions';
 import Signin from './Components/Signin/Signin';
 import Register from './Components/Register/Register';
 import './App.css';
@@ -25,8 +26,10 @@ const initalState = {
   input: '',
   imageUrl: '',
   box: {},
+  pred: {},
   route: 'signin',
   isSignedIn: false,
+  isPredTriggered: false,
   user: {
     id: '',
     name: '',
@@ -60,30 +63,45 @@ class App extends Component {
     const width = Number(img.width);
     const height = Number(img.height);
 
-    // const age = data.outputs[0].data.regions[0].data.face.age_appearance.concepts[0].name;
-    // console.log(`age: ${age}`);
-
-    // const masculine = data.outputs[0].data.regions[0].data.face.gender_appearance.concepts[0].value;
-    // console.log(`masculine: ${masculine}`);
-    // const feminine = data.outputs[0].data.regions[0].data.face.gender_appearance.concepts[0].value;
-    // console.log(`feminine: ${feminine}`);
-
-    // const multicultural_appearance = data.outputs[0].data.regions[0].data.face.multicultural_appearance.concepts;
-    
-    // multicultural_appearance.forEach(val => {
-    //   console.log(val);
-    // })
-
     return {
       leftCol: clarifaiFace.left_col * width,
       topRow: clarifaiFace.top_row * height,
       rightCol: width - (clarifaiFace.right_col * width),
-      bottomRow: height - (clarifaiFace.bottom_row * height)
+      bottomRow: height - (clarifaiFace.bottom_row * height),
+    }
+  }
+
+  calculatePrediction = data => {
+    const age = data.outputs[0].data.regions[0].data.face.age_appearance.concepts[0].name;
+    const gender = data.outputs[0].data.regions[0].data.face.gender_appearance.concepts;   
+    const multicultural_appearance = data.outputs[0].data.regions[0].data.face.multicultural_appearance.concepts;
+
+    return {
+      age: age,
+      gender: gender,
+      multicultural_appearance: multicultural_appearance
     }
   }
 
   displayFaceBox = (box) => {
     this.setState({box:box});
+  }
+
+  predictionTrigger = (pred) => {
+    fetch('http://localhost:3000/imageurl', {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        input: this.state.input
+      })
+    })
+    .then(response => response.json())
+    .then(response => {
+      console.log(this.calculatePrediction(response));
+      this.setState({pred: this.calculatePrediction(response)});
+      this.setState({isPredTriggered: true})
+    })
+    .catch(err => console.log(err))
   }
 
   onInputChange = (e) => {
@@ -132,7 +150,7 @@ class App extends Component {
   }
 
   render() {
-    const {isSignedIn, imageUrl, route, box} = this.state;
+    const {isSignedIn, isPredTriggered,imageUrl, route, box, pred} = this.state;
     return (
       <div className="App">
         <Particles className='particles' params={particleOptions}/>
@@ -145,7 +163,10 @@ class App extends Component {
               onInputChange={this.onInputChange} 
               onButtonSubmit={this.onButtonSubmit}
             />
-            <FaceRecognition box={box} imageUrl={imageUrl}/>
+            <FaceRecognition box={box} imageUrl={imageUrl} predictionTrigger={this.predictionTrigger}/> 
+            <div>
+              {isPredTriggered ? <Predictions pred={pred}/> : ''}
+            </div>
           </div>
           :
           (
