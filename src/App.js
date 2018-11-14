@@ -27,7 +27,7 @@ const initalState = {
   imageUrl: '',
   box: {},
   pred: {},
-  route: 'signin',
+  route: 'home',
   isSignedIn: false,
   isPredTriggered: false,
   user: {
@@ -140,6 +140,10 @@ class App extends Component {
     .catch(err => console.log(err))
   }  
 
+  onPredDone = () => {
+    this.setState({isPredTriggered: false})
+  }
+
   onRouteChange = (route) => {
     if (route === 'signout') {
       this.setState(initalState);
@@ -165,7 +169,7 @@ class App extends Component {
             />
             <FaceRecognition box={box} imageUrl={imageUrl} predictionTrigger={this.predictionTrigger}/> 
             <div>
-              {isPredTriggered ? <Predictions pred={pred}/> : ''}
+              {isPredTriggered ? <Predictions pred={pred} onPredDone={this.onPredDone}/> : ''}
             </div>
           </div>
           :

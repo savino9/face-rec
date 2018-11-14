@@ -1,10 +1,10 @@
 import React from 'react';
 import './Predictions.css';
 
-const Predictions = ({pred,isPredTriggered}) => {
+const Predictions = ({pred,onPredDone}) => {
 	return (		
 		<div className='relative'>
-			<main className="pa2 w-100 center">
+			<main className="w-100 center">
 				<article className="br3 ba shadow-5 b--white o-90 bg-white w-80  w-100-l mw7 purple">
 		      <div className='purple f3 db w-100'>
 		        <h4>Age:</h4>
@@ -30,6 +30,9 @@ const Predictions = ({pred,isPredTriggered}) => {
 							)
 						})
 	      	}
+	      	<div>
+	      		<button className='w-30 grow f4 link ph3 pv2 dib white bg-light-purple' onClick={() => onPredDone()}>close</button>
+	      	</div>
 				</article>
 			</main>
 		</div>
