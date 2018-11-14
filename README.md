@@ -128,7 +128,3 @@ working, it's connected already with the server.
 #### Wednesday 31
 - Figure out how to retrieve info from the Demographic model
 - Implement the new data in the front-end
-
-#### Thursday 1
-- Final test 
-- Deploy with Heroku 
