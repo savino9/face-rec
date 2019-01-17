@@ -27,7 +27,7 @@ const initalState = {
   imageUrl: '',
   box: {},
   pred: {},
-  route: 'home',
+  route: 'signin',
   isSignedIn: false,
   isPredTriggered: false,
   user: {
