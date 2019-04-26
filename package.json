@@ -30,5 +30,11 @@
   "bugs": {
     "url": "https://github.com/savino9/face-rec/issues"
   },
-  "homepage": "https://github.com/savino9/face-rec#readme"
+  "homepage": "https://github.com/savino9/face-rec#readme",
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
