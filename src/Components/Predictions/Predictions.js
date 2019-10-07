@@ -15,19 +15,21 @@ const Predictions = ({pred,onPredDone}) => {
 							return (
 								<div className='purple f3 db w-100' key={i}>
 									<h4>{val.name}:</h4>
-									<p>{val.value}</p>
+									<p><em>%</em> {val.value.toFixed(3)}</p>
 								</div>
 							)
 						})
 	      	}
 	      	{
 						pred.multicultural_appearance.map((val,i) => {
-							return (
-								<div className='purple f3 db w-100' key={i}>
-									<h4>{val.name}:</h4>
-									<p>{val.value}</p>
-								</div>
-							)
+							if(val.value > 0.01){
+								return (							
+									<div className='purple f3 db w-100' key={i}>
+										<h4>{val.name}:</h4>
+										<p><em>%</em> {val.value.toFixed(3)}</p>
+									</div>								
+								)
+							}
 						})
 	      	}
 	      	<div>
